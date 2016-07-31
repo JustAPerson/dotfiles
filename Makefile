@@ -1,7 +1,16 @@
-install: install-neovim
-clean: clean-neovim
+install: install-git install-neovim
+clean: clean-git clean-neovim
 
 DESTDIR ?= $(HOME)
+
+GITPATH ?= $(DESTDIR)
+install-git:
+	@echo "Installing git configuration"
+	@ln ./git/gitconfig $(GITPATH)/.gitconfig
+
+clean-git:
+	@echo "Removing git configuration"
+	@rm $(GITPATH)/.gitconfig
 
 NVIMPATH ?= $(DESTDIR)/.config/nvim/
 install-neovim:

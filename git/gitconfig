@@ -1,0 +1,7 @@
+[user]
+	name = Jason Priest
+	email = jpriest@mit.edu
+[core]
+	editor = nvim
+[push]
+	default = simple
