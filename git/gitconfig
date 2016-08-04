@@ -5,3 +5,14 @@
 	editor = nvim
 [push]
 	default = simple
+[alias]
+	au = add -u
+	co = commit -v
+	coa = commit -v --amend
+	cof = commit -v --fixup
+	di = diff
+	ds = diff --staged
+	graph = log --oneline --graph
+	logo = log --oneline
+	ri = rebase --autosquash -i
+	st = status
