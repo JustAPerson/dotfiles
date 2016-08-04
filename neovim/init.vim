@@ -121,6 +121,7 @@ set fileformats=unix,dos,mac
 set hidden " background buffers
 set number " line numbers
 set cursorline
+set ruler
 set noautochdir
 
 set incsearch
@@ -131,7 +132,10 @@ set ignorecase
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 set smarttab
+
+set spell
 
 nmap ZX :qa<CR>
 nmap ZC :qa!<CR>
@@ -233,7 +237,6 @@ autocmd FileType vimshell imap <buffer> <C-k> <esc><C-w>k
 autocmd FileType vimshell imap <buffer> <C-l> <esc><C-w>l
 
 autocmd FileType mkd setlocal spell
-
 autocmd FileType gitcommit set spell
 
 autocmd FileType python nmap <buffer> <leader>m :Dispatch python %<CR>
