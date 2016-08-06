@@ -20,7 +20,7 @@ Plug 'plasticboy/vim-markdown'
 " " " tools
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/deoplete.nvim'
-Plug 'phildawes/racer'
+Plug 'racer-rust/vim-racer'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
@@ -86,11 +86,7 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_exclude_preview = 1
-" TODO Linux / Windows
-" let g:racer_cmd = 'H:\Prog\lang\rust\racer\target\release\racer.exe'
-" let $RUST_SRC_PATH = 'H:\Prog\lang\rust\rust\rustc-nightly-src\rustc-nightly\src\'
-" let g:racer_cmd = "/home/jason/prog/src/rust/racer/target/racer"
-" let $RUST_SRC_PATH = "/home/jason/prog/src/rust/rust/src/"
+let g:racer_cmd = "/home/jason/.cargo/bin/racer"
 
 let g:ctrlp_root_markers = ['Cargo.toml']
 let g:ctrlspace_project_root_markers = ["Cargo.toml"]
