@@ -95,6 +95,8 @@ let g:ctrlspace_use_tabline=1
 "let g:notes_directories = ['H:/Documents/Notes', '~/Google\ Drive/Notes']
 let g:gist_post_private = 1
 
+set wildignore+=*/.git/*,*.o,*.a,*.rlib
+
 if has("gui_running")
     " Remove most of gVim GUI.
     set guioptions = "c"
