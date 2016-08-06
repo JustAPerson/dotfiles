@@ -225,7 +225,6 @@ autocmd FileType rust nmap <buffer> <leader>n :Dispatch cargo run<CR>
 autocmd BufNewFile,BufRead *.s  set filetype=nasm
 
 autocmd FileType nasm set commentstring=;\ %s
-autocmd FileType nasm set noexpandtab
 
 autocmd FileType vimshell nmap <buffer> <C-h> <C-w>h
 autocmd FileType vimshell nmap <buffer> <C-j> <C-w>j
