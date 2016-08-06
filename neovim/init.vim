@@ -231,8 +231,7 @@ autocmd FileType vimshell imap <buffer> <C-j> <esc><C-w>j
 autocmd FileType vimshell imap <buffer> <C-k> <esc><C-w>k
 autocmd FileType vimshell imap <buffer> <C-l> <esc><C-w>l
 
-autocmd FileType mkd setlocal spell
-autocmd FileType gitcommit set spell
+autocmd TermOpen * setlocal nospell
 
 autocmd FileType python nmap <buffer> <leader>m :Dispatch python %<CR>
 autocmd FileType qf nmap <buffer> <leader><Enter> <C-w>L
