@@ -182,6 +182,7 @@ noremap <leader>l :silent! Copen<CR>
 noremap <leader>L :silent! Copen<CR> <C-w>L
 " nmap <leader>m :Make<CR>
 noremap <leader><space> :noh<CR>
+noremap <leader>gs :Gstatus<CR>
 
 nnoremap <leader>q :Bdelete<CR>
 nnoremap <leader>Q :Bdelete!<CR>
