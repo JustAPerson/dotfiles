@@ -88,6 +88,9 @@ map k gk
 map - 0
 map 0 ^
 map Q <nop>
+map <C-e> $
+
+noremap <C-f> <C-u>
 
 let mapleader = ','
 map  <leader><space> :nohlsearch<CR>
@@ -99,8 +102,16 @@ nmap <leader>tl :noautocmd vimgrep /TODO/j **/*<CR>
 map <leader>gs :Gstatus<CR>
 map <leader>gv :Gitv<CR>
 map <leader>gV :Gitv!<CR>
+map <leader>gr :GundoToggle<CR>
 
-" Selecting linewise is way more useful
+" Improved pasting
+nnoremap <leader>y "+yy
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+" Select just pasted content
+nnoremap <leader>v V`]
+
+" Easier selecting. Linewise is more useful
 nnoremap <C-v> <S-v>
 nnoremap <S-v> <C-v>
 vnoremap <C-v> <S-v>
@@ -124,6 +135,7 @@ map ZC :qa!<CR>
 
 " Easy terminals
 tmap <Esc> <C-\><C-n>
+tnoremap <leader><Esc> <Esc>
 " tnoremap jj    <C-\><C-n>
 
 command! TrimWhitespace :%s/\s\+$//
