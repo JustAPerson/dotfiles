@@ -2,10 +2,15 @@
 "   ,qz
 " Weirdly useful
 "   CTRL-n select word
+"   zt     scroll line to top
+"   zz     scroll line to center
+"   zb     scroll line to bottom
 " Useless
 "   <C-m> <C-,> <C-.>
 "   - + <CR>
-"
+"   <C-u> <C-b>
+"   <C-y>
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'flazz/vim-colorschemes' " glorious Monokai
@@ -28,16 +33,18 @@ Plug 'moll/vim-bbye'                  " :Bdelete
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
 Plug 'scrooloose/nerdtree'            " file tree
 Plug 'scrooloose/syntastic'           " syntax checking on save
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
 Plug 'terryma/vim-multiple-cursors'   " v_CTRL-n
 Plug 'tpope/vim-commentary'           " commenting w/ gcc
 Plug 'tpope/vim-eunuch'               " linux interop
 Plug 'tpope/vim-fugitive'             " git commands
 Plug 'tpope/vim-unimpaired'           " quick settings
+Plug 'fidian/hexmode'
 
 " Need exploration
 Plug 'junegunn/vim-easy-align'
     vmap <Enter> <Plug>(EasyAlign)
-    nmap ga      <Plug>(EasyAlign)
+    nmap ga      V<Plug>(EasyAlign)
 Plug 'sjl/gundo.vim'
 Plug 'easymotion/vim-easymotion'
     " map <leader><leader>a <Plug>(easymotion-jumptoanywhere)
@@ -47,7 +54,7 @@ Plug 'easymotion/vim-easymotion'
     vmap f  <Plug>(easymotion-prefix)
     vmap fd <Plug>(easymotion-repeat)
     vmap fa <Plug>(easymotion-jumptoanywhere)
-Plug 'szw/vim-ctrlspace'
+" Plug 'szw/vim-ctrlspace'
 Plug 'mattn/gist-vim'
 " TODO snippets
 
@@ -68,8 +75,9 @@ set smartcase
 set ruler
 set cursorline
 set number relativenumber
-
-
+set splitright
+set splitbelow
+set gdefault
 
 set shiftwidth=4
 set tabstop=4
@@ -90,6 +98,7 @@ map 0 ^
 map Q <nop>
 map <C-e> $
 
+" scrolling half-pages is more useful
 noremap <C-f> <C-u>
 
 let mapleader = ','
@@ -103,19 +112,24 @@ map <leader>gs :Gstatus<CR>
 map <leader>gv :Gitv<CR>
 map <leader>gV :Gitv!<CR>
 map <leader>gr :GundoToggle<CR>
+map <leader>tv <C-w>v:term<CR>
+map <leader>ts <C-w>s:term<CR>
 
-" Improved pasting
-nnoremap <leader>y "+yy
-vnoremap <leader>y "+y
-nnoremap <leader>p "+p
-" Select just pasted content
-nnoremap <leader>v V`]
-
-" Easier selecting. Linewise is more useful
+" Selecting linewise is way more useful
 nnoremap <C-v> <S-v>
 nnoremap <S-v> <C-v>
 vnoremap <C-v> <S-v>
 vnoremap <S-v> <C-v>
+
+" Copying and pasting to system clipboard is vital
+nnoremap <leader>y "+yy
+nnoremap <leader>Y :%y+<CR>
+vnoremap <leader>y "+y
+noremap  <leader>p "+p
+
+" Select just yanked text
+nnoremap     <leader>v V`]
+
 
 " Lazy window movement
 map  <C-h> <C-w>h
@@ -137,5 +151,7 @@ map ZC :qa!<CR>
 tmap <Esc> <C-\><C-n>
 tnoremap <leader><Esc> <Esc>
 " tnoremap jj    <C-\><C-n>
+" never forget
+let g:terminal_scrollback_buffer_size=65536
 
 command! TrimWhitespace :%s/\s\+$//
