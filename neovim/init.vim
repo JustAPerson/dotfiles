@@ -17,8 +17,8 @@ Plug 'flazz/vim-colorschemes' " glorious Monokai
 
 " Languages
 Plug 'rust-lang/rust.vim'   " Mozilla Rust
-    let g:racer_cmd = "/home/jason/.cargo/bin/racer"
 Plug 'racer-rust/vim-racer' " Rust completion
+    let g:racer_cmd = "/home/jason/.cargo/bin/racer"
 
 Plug 'cespare/vim-toml'
 
@@ -40,6 +40,7 @@ Plug 'tpope/vim-eunuch'               " linux interop
 Plug 'tpope/vim-fugitive'             " git commands
 Plug 'tpope/vim-unimpaired'           " quick settings
 Plug 'fidian/hexmode'
+Plug 'jiangmiao/auto-pairs'
 
 " Need exploration
 Plug 'junegunn/vim-easy-align'
@@ -78,6 +79,7 @@ set number relativenumber
 set splitright
 set splitbelow
 set gdefault
+set smartindent
 
 set shiftwidth=4
 set tabstop=4
@@ -126,6 +128,7 @@ nnoremap <leader>y "+yy
 nnoremap <leader>Y :%y+<CR>
 vnoremap <leader>y "+y
 noremap  <leader>p "+p
+noremap  <leader>P "+P
 
 " Select just yanked text
 nnoremap     <leader>v V`]
