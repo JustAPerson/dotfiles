@@ -12,7 +12,11 @@
 	cof = commit -v --fixup
 	di = diff
 	ds = diff --staged
+	gr = log --oneline --graph
 	graph = log --oneline --graph
+	lo = log --oneline
 	logo = log --oneline
+	rea = rebase --abort
+	rec = rebase --continue
 	ri = rebase --autosquash -i
 	st = status
