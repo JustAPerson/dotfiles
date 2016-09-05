@@ -117,6 +117,7 @@ map <leader>gV :Gitv!<CR>
 map <leader>gr :GundoToggle<CR>
 map <leader>tv <C-w>v:term<CR>
 map <leader>ts <C-w>s:term<CR>
+map <leader>m :make!<CR>
 
 " Selecting linewise is way more useful
 nnoremap <C-v> <S-v>
