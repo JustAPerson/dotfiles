@@ -34,6 +34,7 @@ Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
 Plug 'scrooloose/nerdtree'            " file tree
 Plug 'scrooloose/syntastic'           " syntax checking on save
     let g:syntastic_python_python_exec = '/usr/bin/python3'
+    let g:syntastic_asm_checkers = ["nasm"]
 Plug 'terryma/vim-multiple-cursors'   " v_CTRL-n
 Plug 'tpope/vim-commentary'           " commenting w/ gcc
 Plug 'tpope/vim-eunuch'               " linux interop
