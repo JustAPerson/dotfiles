@@ -1,4 +1,4 @@
-install: install-git install-neovim
+install: install-git install-neovim install-misc
 clean: clean-git clean-neovim
 
 DESTDIR ?= $(HOME)
@@ -40,3 +40,7 @@ install-neovim:
 clean-neovim:
 	@echo "Removing neovim configuration and plugins"
 	@rm -rf $(NVIMPATH)
+
+# TODO figure out Makefile loops
+install-misc:
+	@ln ./misc/.todotxt-machinerc $(DESTDIR)/.todotxt-machinerc
