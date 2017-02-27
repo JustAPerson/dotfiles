@@ -118,6 +118,8 @@ map <leader>gr :GundoToggle<CR>
 map <leader>tv <C-w>v:term<CR>
 map <leader>ts <C-w>s:term<CR>
 map <leader>m :make!<CR>
+nmap <leader>e :NERDTreeFocus<CR>
+nmap <leader>E :NERDTreeToggle<CR>
 
 " Selecting linewise is way more useful
 nnoremap <C-v> <S-v>
