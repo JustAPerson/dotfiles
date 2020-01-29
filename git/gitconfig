@@ -1,6 +1,6 @@
 [user]
 	name = Jason Priest
-	email = jpriest@mit.edu
+	email = jason@jpriest.me
 [core]
 	editor = nvim
 [push]
