@@ -1,5 +1,5 @@
-install: install-git install-neovim install-misc
-clean: clean-git clean-neovim
+install: install-git install-neovim install-misc install-bin
+clean: clean-git clean-neovim clean-bin
 
 DESTDIR ?= $(HOME)
 PPAS =
@@ -44,3 +44,24 @@ clean-neovim:
 # TODO figure out Makefile loops
 install-misc:
 	@ln ./misc/.todotxt-machinerc $(DESTDIR)/.todotxt-machinerc
+
+BINS = $(notdir $(wildcard bin/*))
+install-bin:
+	@mkdir -p $(DESTDIR)/.local/bin/
+	@for bin in $(BINS); do \
+		echo Copying $$bin; \
+		cp bin/$$bin $(DESTDIR)/.local/bin/; \
+	done
+
+clean-bin:
+	@for bin in $(BINS); do \
+		echo Removing $$bin; \
+		rm -f $(DESTDIR)/.local/bin/$$bin; \
+	done
+
+check-bins:
+	@for bin in $(BINS); do \
+		echo Checking $$bin; \
+		cmp bin/$$bin $(DESTDIR)/.local/bin/$$bin; \
+	done
+	@echo All files are up to date
