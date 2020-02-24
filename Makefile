@@ -76,3 +76,19 @@ check-bins:
 	done
 	@echo All files are up to date
 endif
+
+ifdef INSTALL_awesome
+AWESOMESCRIPTS ?= $(notdir $(wildcard awesome/*))
+AWESOMEPATH ?= $(DESTDIR)/.config/awesome/
+DEPS += awesome
+install-awesome:
+	@mkdir -p $(AWESOMEPATH)
+	@for file in $(AWESOMESCRIPTS); do \
+		ln awesome/$$file $(AWESOMEPATH)/$$file; \
+	done
+	@echo Must log out and set window manager
+
+uninstall-awesome:
+	@echo "Removing awesome configuration"
+	@rm -rf $(AWESOMEPATH)
+endif
