@@ -1,21 +1,32 @@
-install: install-neovim install-misc install-bin
-uninstall: uninstall-neovim uninstall-bin
-
 DESTDIR ?= $(HOME)
-PPAS =
-DEPS = git
+TARGETS = neovim misc bin
 
+print:
+	@echo Plan to install: $(TARGETS)
+install: install-dependencies $(addprefix install-,$(TARGETS))
+uninstall: $(addprefix uninstall-,$(TARGETS))
+
+PPAS =
+DEPS =
+PIPS =
 install-dependencies:
 	sudo apt-get install software-properties-common
-	$(foreach PPA, $(PPAS), sudo add-apt-repository $(PPA))
+	for PPA in $(PPAS); do \
+		echo Installing ppa: $$PPA; \
+		sudo add-apt-repository $$PPA; \
+	done
 	sudo apt-get update
 	sudo apt-get install $(DEPS)
-	pip3 install neovim
+	pip3 install $(PIPS)
 
+$(foreach TARGET,$(TARGETS),$(eval INSTALL_$(TARGET) := ""))
+
+ifdef INSTALL_neovim
 PPAS += ppa:neovim-ppa/unstable
 DEPS += neovim
 DEPS += xclip # clipboard support
 DEPS += python-dev python-pip python3-dev python3-pip
+PIPS += neovim
 NVIMPATH ?= $(DESTDIR)/.config/nvim/
 install-neovim:
 	@echo "Installing neovim configuration"
@@ -29,15 +40,22 @@ install-neovim:
 uninstall-neovim:
 	@echo "Removing neovim configuration and plugins"
 	@rm -rf $(NVIMPATH)
+endif
 
+ifdef INSTALL_misc
 MISCFILES = $(notdir $(wildcard misc/*))
 install-misc:
 	@for file in $(MISCFILES); do \
 		ln ./misc/$$file $(DESTDIR)/$$file; \
 	done
+endif
 
-BINS = $(notdir $(wildcard bin/*))
+ifdef INSTALL_bin
+BINS ?= $(notdir $(wildcard bin/*))
 BINPATH ?= $(DESTDIR)/.local/bin/
+ifneq ($(filter scrot,$(BINS)),)
+DEPS += scrot
+endif
 install-bin:
 	@mkdir -p $(BINPATH)
 	@for bin in $(BINS); do \
@@ -57,3 +75,4 @@ check-bins:
 		cmp bin/$$bin $(BINPATH)/$$bin; \
 	done
 	@echo All files are up to date
+endif
