@@ -1,9 +1,9 @@
-install: install-git install-neovim install-misc install-bin
-uninstall: uninstall-git uninstall-neovim uninstall-bin
+install: install-neovim install-misc install-bin
+uninstall: uninstall-neovim uninstall-bin
 
 DESTDIR ?= $(HOME)
 PPAS =
-DEPS =
+DEPS = git
 
 install-dependencies:
 	sudo apt-get install software-properties-common
@@ -11,17 +11,6 @@ install-dependencies:
 	sudo apt-get update
 	sudo apt-get install $(DEPS)
 	pip3 install neovim
-
-
-DEPS += git
-GITPATH ?= $(DESTDIR)
-install-git:
-	@echo "Installing git configuration"
-	@ln ./git/gitconfig $(GITPATH)/.gitconfig
-
-uninstall-git:
-	@echo "Removing git configuration"
-	@rm $(GITPATH)/.gitconfig
 
 PPAS += ppa:neovim-ppa/unstable
 DEPS += neovim
@@ -41,9 +30,11 @@ uninstall-neovim:
 	@echo "Removing neovim configuration and plugins"
 	@rm -rf $(NVIMPATH)
 
-# TODO figure out Makefile loops
+MISCFILES = $(notdir $(wildcard misc/*))
 install-misc:
-	@ln ./misc/.todotxt-machinerc $(DESTDIR)/.todotxt-machinerc
+	@for file in $(MISCFILES); do \
+		ln ./misc/$$file $(DESTDIR)/$$file; \
+	done
 
 BINS = $(notdir $(wildcard bin/*))
 BINPATH ?= $(DESTDIR)/.local/bin/
