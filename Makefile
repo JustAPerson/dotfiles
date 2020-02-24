@@ -1,5 +1,5 @@
 install: install-git install-neovim install-misc install-bin
-clean: clean-git clean-neovim clean-bin
+uninstall: uninstall-git uninstall-neovim uninstall-bin
 
 DESTDIR ?= $(HOME)
 PPAS =
@@ -19,7 +19,7 @@ install-git:
 	@echo "Installing git configuration"
 	@ln ./git/gitconfig $(GITPATH)/.gitconfig
 
-clean-git:
+uninstall-git:
 	@echo "Removing git configuration"
 	@rm $(GITPATH)/.gitconfig
 
@@ -37,7 +37,7 @@ install-neovim:
 	@ln ./neovim/plug.vim $(NVIMPATH)/autoload/plug.vim
 	@nvim --headless -c PlugInstall -c quitall 2>/dev/null
 
-clean-neovim:
+uninstall-neovim:
 	@echo "Removing neovim configuration and plugins"
 	@rm -rf $(NVIMPATH)
 
@@ -54,7 +54,7 @@ install-bin:
 		cp bin/$$bin $(BINPATH); \
 	done
 
-clean-bin:
+uninstall-bin:
 	@for bin in $(BINS); do \
 		echo Removing $$bin; \
 		rm -f $(BINPATH)/$$bin; \
