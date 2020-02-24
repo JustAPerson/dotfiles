@@ -46,22 +46,23 @@ install-misc:
 	@ln ./misc/.todotxt-machinerc $(DESTDIR)/.todotxt-machinerc
 
 BINS = $(notdir $(wildcard bin/*))
+BINPATH ?= $(DESTDIR)/.local/bin/
 install-bin:
-	@mkdir -p $(DESTDIR)/.local/bin/
+	@mkdir -p $(BINPATH)
 	@for bin in $(BINS); do \
 		echo Copying $$bin; \
-		cp bin/$$bin $(DESTDIR)/.local/bin/; \
+		cp bin/$$bin $(BINPATH); \
 	done
 
 clean-bin:
 	@for bin in $(BINS); do \
 		echo Removing $$bin; \
-		rm -f $(DESTDIR)/.local/bin/$$bin; \
+		rm -f $(BINPATH)/$$bin; \
 	done
 
 check-bins:
 	@for bin in $(BINS); do \
 		echo Checking $$bin; \
-		cmp bin/$$bin $(DESTDIR)/.local/bin/$$bin; \
+		cmp bin/$$bin $(BINPATH)/$$bin; \
 	done
 	@echo All files are up to date
