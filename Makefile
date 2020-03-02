@@ -1,5 +1,5 @@
 DESTDIR ?= $(HOME)
-TARGETS = neovim misc bin
+TARGETS ?= neovim misc bin
 
 print:
 	@echo Plan to install: $(TARGETS)
@@ -43,7 +43,7 @@ uninstall-neovim:
 endif
 
 ifdef INSTALL_misc
-MISCFILES = $(notdir $(wildcard misc/*))
+MISCFILES ?= $(notdir $(wildcard misc/*))
 install-misc:
 	@for file in $(MISCFILES); do \
 		ln ./misc/$$file $(DESTDIR)/$$file; \
