@@ -1,3 +1,5 @@
+# TODO: rewrite this in Python
+
 DESTDIR ?= $(HOME)
 TARGETS ?= neovim misc bin
 
@@ -22,20 +24,22 @@ install-dependencies:
 $(foreach TARGET,$(TARGETS),$(eval INSTALL_$(TARGET) := ""))
 
 ifdef INSTALL_neovim
-PPAS += ppa:neovim-ppa/unstable
+# PPAS += ppa:neovim-ppa/unstable
 DEPS += neovim
 DEPS += xclip # clipboard support
 DEPS += python-dev python-pip python3-dev python3-pip
 PIPS += neovim
 NVIMPATH ?= $(DESTDIR)/.config/nvim/
 install-neovim:
-	@echo "Installing neovim configuration"
-	@mkdir -p $(NVIMPATH)
-	@ln ./neovim/init.vim $(NVIMPATH)/init.vim
-	@echo "Installing neovim plugins"
-	@mkdir $(NVIMPATH)/autoload $(NVIMPATH)/plugged
-	@ln ./neovim/plug.vim $(NVIMPATH)/autoload/plug.vim
-	@nvim --headless -c PlugInstall -c quitall 2>/dev/null
+	@if [ -d $(NVIMPATH) ]; then \
+		echo "Installing neovim configuration"; \
+		mkdir -p $(NVIMPATH); \
+		ln ./neovim/init.vim $(NVIMPATH)/init.vim; \
+		echo "Installing neovim plugins"; \
+		mkdir $(NVIMPATH)/autoload $(NVIMPATH)/plugged; \
+		ln ./neovim/plug.vim $(NVIMPATH)/autoload/plug.vim; \
+		nvim --headless -c PlugInstall -c quitall 2>/dev/null; \
+	fi
 
 uninstall-neovim:
 	@echo "Removing neovim configuration and plugins"
