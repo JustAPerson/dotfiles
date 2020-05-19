@@ -1,0 +1,4 @@
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+export HISTTIMEFORMAT="%Y/%m/%d %T "
+set -o vi

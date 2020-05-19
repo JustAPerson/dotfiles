@@ -52,6 +52,12 @@ install-misc:
 	@for file in $(MISCFILES); do \
 		ln ./misc/$$file $(DESTDIR)/$$file; \
 	done
+	@grep "commonrc" $(DESTDIR)/.bashrc || \
+		( \
+			echo "if [ -f ~/.commonrc ]; then source ~/.commonrc; fi" \
+						>> $(DESTDIR)/.bashrc ; \
+			echo "Modified ~/.bashrc" > /dev/stderr \
+		)
 endif
 
 ifdef INSTALL_bin
