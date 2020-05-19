@@ -102,3 +102,14 @@ uninstall-awesome:
 	@echo "Removing awesome configuration"
 	@rm -rf $(AWESOMEPATH)
 endif
+
+ifdef INSTALL_mpv
+MPVPATH ?= $(DESTDIR)/.config/mpv/
+DEPS += mpv
+install-mpv:
+	@mkdir -p $(MPVPATH)
+	@ln config/mpv/mpv.conf $(MPVPATH)/mpv.conf
+
+uninstall-mpv:
+	@rm -rf $(MPVPATH)
+endif
